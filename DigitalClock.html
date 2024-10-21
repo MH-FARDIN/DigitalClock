@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Tektur&display=swap" rel="stylesheet">
+    <title>Clock</title>
+    <style>
+        body {
+            background-color: black;
+            font-family: 'Tektur', cursive;
+        }
+
+        .clock {
+            text-align: center;
+            color: rgb(0, 247, 243);
+            margin-top: 25vh;
+            font-size: 35px;
+
+        }
+
+        h1 {
+            display: inline-block;
+            width: 135px;
+        }
+
+        span {
+            font-size: 100px;
+            margin-left: -20px;
+        }
+    </style>
+</head>
+
+<body onload="showtime()">
+    <div class="clock">
+        <h1 id="h"></h1>
+        <h1 id="m"></h1>
+        <h1 id="s"></h1>
+        <span id="."></span>
+        <h1 id="ms"></h1>
+        <h1 id="apm"></h1>
+    </div>
+
+
+    <script>
+        function showtime() {
+            var d = new Date();
+            var h = d.getHours();
+            var m = d.getMinutes();
+            var s = d.getSeconds();
+            var ms = d.getMilliseconds();
+            var session = " AM";
+            if (h >= 12) {
+                session = " PM";
+
+            };
+            if (h > 12) {
+                h = h - 12;
+
+            };
+
+            h = h < 10 ? "0" + h : h;
+            m = m < 10 ? "0" + m : m;
+            s = s < 10 ? "0" + s : s;
+            ms = ms < 10 ? "0" + ms : ms;
+            ms = ms < 100 ? "0" + ms : ms;
+
+            // -----> Previous Code <-----
+            // var time = h + " : " + m + " : " + s + " : " + ms + session;
+            // document.getElementsByClassName("clock")[0].innerText = time;
+            // setTimeout(showtime, 1)
+
+            document.getElementById("h").innerText = h + " : "
+            document.getElementById("m").innerText = m + " : "
+            document.getElementById("s").innerText = s
+            document.getElementById(".").innerText = "."
+            document.getElementById("ms").innerText = ms
+            document.getElementById("apm").innerText = session
+            setTimeout(showtime, 1)
+        }
+    </script>
+</body>
+
+</html>
